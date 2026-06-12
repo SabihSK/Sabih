@@ -1,0 +1,64 @@
+# macOS and editor metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and runtime output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependency folders and caches
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+.cache/
+.parcel-cache/
+
+# Build and generated output
+dist/
+build/
+out/
+public/
+.next/
+.nuxt/
+.vite/
+coverage/
+
+# Python caches and local virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Temporary project artifacts
+.codex_tmp_pdf/
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Local screenshots and render previews
+*.screenshot.png
+preview-*.png
+debug-*.html
+
