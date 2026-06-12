@@ -123,3 +123,4 @@ Before publishing, check:
 - Vanilla JavaScript
 - Static hosting compatible
 
+## About Dev
