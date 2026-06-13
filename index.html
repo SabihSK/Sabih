@@ -10,7 +10,8 @@
     <title>Sheikh Muhammad Sabih | Software Engineer</title>
     <link rel="icon" href="assets/site-icon.svg?v=2" type="image/svg+xml" />
     <link rel="shortcut icon" href="assets/site-icon.svg?v=2" type="image/svg+xml" />
-    <link rel="preload" as="image" href="assets/hero-workspace.png" />
+    <link rel="preload" as="image" href="assets/hero-workspace-mobile.webp" type="image/webp" media="(max-width: 760px)" />
+    <link rel="preload" as="image" href="assets/hero-workspace.webp" type="image/webp" media="(min-width: 761px)" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -97,7 +98,12 @@
               <span></span>
               <span></span>
             </div>
-            <img src="assets/sabih-portrait.png" alt="Sheikh Muhammad Sabih" class="hero-portrait" />
+            <picture>
+              <source srcset="assets/sabih-portrait-mobile.webp" type="image/webp" media="(max-width: 760px)" />
+              <source srcset="assets/sabih-portrait-mobile.jpg" type="image/jpeg" media="(max-width: 760px)" />
+              <source srcset="assets/sabih-portrait.webp" type="image/webp" />
+              <img src="assets/sabih-portrait-optimized.jpg" alt="Sheikh Muhammad Sabih" class="hero-portrait" width="1040" height="832" fetchpriority="high" decoding="async" />
+            </picture>
           </div>
         </div>
       </section>
@@ -118,7 +124,10 @@
         <div class="container about-layout">
           <aside class="profile-panel">
             <div class="profile-mini">
-              <img class="profile-avatar" src="assets/sabih_picture.png" alt="Sheikh Muhammad Sabih" />
+              <picture>
+                <source srcset="assets/sabih-picture-avatar.webp" type="image/webp" />
+                <img class="profile-avatar" src="assets/sabih-picture-avatar.jpg" alt="Sheikh Muhammad Sabih" width="360" height="360" loading="lazy" decoding="async" />
+              </picture>
               <div>
                 <strong>Sheikh Muhammad Sabih</strong>
                 <span>Software Engineer II</span>

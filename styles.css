@@ -184,7 +184,7 @@ select {
   --hero-cursor-opacity: 0;
   --hero-glow-opacity: 0.52;
   --hero-scan-opacity: 0.26;
-  min-height: 92vh;
+  min-height: clamp(720px, 92vh, 980px);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -237,7 +237,6 @@ select {
 
 .hero-media {
   z-index: 0;
-  background-image: url("assets/hero-workspace.png");
   background-size: 104% auto;
   background-position: 54% 50%;
   opacity: 0.58;
@@ -245,6 +244,16 @@ select {
   transform-origin: center;
   transition: transform 0.18s ease-out;
   animation: heroImageBreathe 18s ease-in-out infinite alternate;
+}
+
+@media (min-width: 761px) {
+  .hero-media {
+    background-image: url("assets/hero-workspace.jpg");
+    background-image: image-set(
+      url("assets/hero-workspace.webp") type("image/webp"),
+      url("assets/hero-workspace.jpg") type("image/jpeg")
+    );
+  }
 }
 
 .hero-overlay {
@@ -534,13 +543,21 @@ select {
   animation: portraitScan 5.8s ease-in-out infinite;
 }
 
+.hero-portrait-wrap picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 .hero-portrait {
   position: absolute;
-  inset: auto 50% 0 auto;
-  width: min(112%, 520px);
-  max-width: none;
-  transform: translateX(50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   filter: saturate(1.02) contrast(1.04);
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .portrait-orbit {
@@ -864,7 +881,14 @@ select {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.profile-mini picture {
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+}
+
 .profile-avatar {
+  display: block;
   width: 58px;
   height: 58px;
   flex: 0 0 auto;
@@ -1207,9 +1231,35 @@ p {
 
 .github-band {
   color: #fff;
-  background:
-    linear-gradient(180deg, rgba(7, 17, 19, 0.18), rgba(7, 17, 19, 0.92)),
-    url("assets/hero-workspace.png") center / cover;
+  background: var(--deep);
+}
+
+@media (min-width: 761px) {
+  .github-band {
+    background:
+      linear-gradient(180deg, rgba(7, 17, 19, 0.18), rgba(7, 17, 19, 0.92)),
+      url("assets/hero-workspace.webp") center / cover;
+    background:
+      linear-gradient(180deg, rgba(7, 17, 19, 0.18), rgba(7, 17, 19, 0.92)),
+      image-set(
+        url("assets/hero-workspace.webp") type("image/webp"),
+        url("assets/hero-workspace.jpg") type("image/jpeg")
+      ) center / cover;
+  }
+}
+
+@media (max-width: 760px) {
+  .github-band {
+    background:
+      linear-gradient(180deg, rgba(7, 17, 19, 0.18), rgba(7, 17, 19, 0.92)),
+      url("assets/hero-workspace-mobile.webp") center / cover;
+    background:
+      linear-gradient(180deg, rgba(7, 17, 19, 0.18), rgba(7, 17, 19, 0.92)),
+      image-set(
+        url("assets/hero-workspace-mobile.webp") type("image/webp"),
+        url("assets/hero-workspace-mobile.jpg") type("image/jpeg")
+      ) center / cover;
+  }
 }
 
 .github-overlay {
@@ -1427,6 +1477,8 @@ p {
 @media (max-width: 980px) {
   .site-header {
     padding: 10px 0;
+    background: rgba(246, 243, 238, 0.96);
+    backdrop-filter: none;
   }
 
   .nav {
@@ -1486,13 +1538,27 @@ p {
     min-height: auto;
   }
 
+  .hero::before {
+    animation: none;
+    transform: none;
+  }
+
+  .hero::after {
+    opacity: 0.32;
+    transform: none;
+    transition: none;
+  }
+
   .hero-media {
     background-position: 62% center;
     background-size: cover;
+    animation: none;
+    transform: none;
+    transition: none;
   }
 
   .hero-system {
-    opacity: 0.64;
+    display: none;
   }
 
   .system-node {
@@ -1539,6 +1605,14 @@ p {
     width: min(460px, 100%);
     min-height: 440px;
     justify-self: center;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-portrait-wrap::after,
+  .portrait-orbit,
+  .portrait-orbit span {
+    animation: none;
   }
 
   .intro-grid,
@@ -1576,46 +1650,35 @@ p {
     min-height: auto;
   }
 
+  .hero::before {
+    background:
+      linear-gradient(115deg, transparent 0 30%, rgba(57, 199, 189, 0.08) 38%, transparent 48%),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.026) 0 1px, transparent 1px 88px);
+    opacity: 0.34;
+  }
+
+  .hero::after {
+    background:
+      radial-gradient(circle at 64% 32%, rgba(57, 199, 189, 0.2), transparent 30%),
+      radial-gradient(circle at 24% 68%, rgba(240, 169, 74, 0.12), transparent 28%);
+    mix-blend-mode: normal;
+    opacity: 0.45;
+  }
+
+  .hero-media {
+    background-image: url("assets/hero-workspace-mobile.jpg");
+    background-image: image-set(
+      url("assets/hero-workspace-mobile.webp") type("image/webp"),
+      url("assets/hero-workspace-mobile.jpg") type("image/jpeg")
+    );
+    background-position: 58% center;
+    opacity: 0.44;
+  }
+
   .hero-overlay {
     background:
       linear-gradient(180deg, rgba(7, 17, 19, 0.78) 0%, rgba(7, 17, 19, 0.92) 72%, rgba(7, 17, 19, 0.98) 100%),
       linear-gradient(90deg, rgba(7, 17, 19, 0.72), rgba(7, 17, 19, 0.42));
-  }
-
-  .hero-system {
-    opacity: 0.38;
-  }
-
-  .system-node {
-    display: none;
-  }
-
-  .system-code {
-    display: none;
-  }
-
-  .system-line {
-    width: 84vw;
-  }
-
-  .system-sweep {
-    left: -38%;
-    width: 176%;
-    opacity: 0.34;
-  }
-
-  .pulse-a {
-    top: 42%;
-    right: -20%;
-  }
-
-  .pulse-c {
-    top: 26%;
-    left: -34%;
-  }
-
-  .pulse-b {
-    display: none;
   }
 
   .hero-content {
@@ -1636,11 +1699,14 @@ p {
 
   .hero-portrait-wrap {
     min-height: 320px;
-    transform: none;
   }
 
   .hero-portrait {
-    width: min(106%, 340px);
+    width: 100%;
+  }
+
+  .btn {
+    min-width: 0;
   }
 
   h2 {
@@ -1703,6 +1769,51 @@ p {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 360px) {
+  .container,
+  .nav {
+    width: calc(100% - 28px);
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-content {
+    padding-top: 126px;
+  }
+
+  .eyebrow,
+  .section-kicker {
+    font-size: 0.7rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 12vw, 2.7rem);
+    overflow-wrap: anywhere;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+    font-size: 0.96rem;
+  }
+
+  .btn {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .hero-stats strong {
+    font-size: 1.55rem;
   }
 }
 
